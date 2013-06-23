@@ -1,10 +1,17 @@
-<% provide(:title, 'Dashboard') %>
-<h2>List of People</h2>
-<p>Put people here</p>
+<% provide(:title, 'Add Members') %>
+<h1>Add user</h1>
 
-<h2>List of Teams</h2>
-<p>Put people Teams here</p>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user) do |f| %>
+	  <%= render 'shared/error_messages' %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-<h2>List of Teams and the People in them</h2>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
 
-
+      <%= f.submit "Create User", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
