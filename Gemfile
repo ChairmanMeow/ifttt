@@ -5,10 +5,13 @@ gem 'bootstrap-sass'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development do
-  gem 'sqlite3', '1.3.5'
+group :development, :test do
+  gem 'sqlite3'
 end
-
+#Added Postgres support
+group :production do
+  gem 'pg'
+end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -34,10 +37,7 @@ gem 'jquery-rails', '2.0.2'
 # To use debugger
 # gem 'debugger'
 
-#Added Postgres support
-group :production do
-  gem 'pg', '0.12.2'
-end
+
 
 #Added rspec support
 group :development, :test do
