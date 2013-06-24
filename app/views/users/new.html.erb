@@ -3,13 +3,15 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for @user, url: {action: "create"}, html: {class: "nifty_form"}  do |f| %>
 	  <%= render 'shared/error_messages' %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
       <%= f.label :email %>
       <%= f.text_field :email %>
+
+
 
       <%= f.submit "Create User", class: "btn btn-large btn-primary" %>
     <% end %>

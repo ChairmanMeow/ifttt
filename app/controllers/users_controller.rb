@@ -5,24 +5,30 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-
+    @user = User.new
+    @team = Team.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
+
+
   end
 
  def new
     @user = User.new
+    @team = Team.new
   end
 
   def create
+    @users = User.all
     @user = User.new(params[:user])
     if @user.save
-      flash.now[:success] = "User Added!"
-      render 'new'
+      flash.keep[:success] =  @user.name + " Added to list of Users!"
+      redirect_to users_path
+
     else
-      render 'new'
+      render 'index'
     end
   end
 
@@ -45,13 +51,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to adduser_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
+   end
   end
   
 end
