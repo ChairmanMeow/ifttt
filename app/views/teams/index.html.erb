@@ -1,0 +1,39 @@
+<% provide(:title, 'Teams') %>
+<h1>Add Team</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@team) do |f| %>
+    <%= render 'shared/error_team_messages' %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.submit "Create Team", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<br/>
+
+<h1>Listing Teams</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= team.name %></td>
+    <td><%= link_to 'Show', team %></td>
+    <td><%= link_to 'Edit', edit_team_path(team) %></td>
+    <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
