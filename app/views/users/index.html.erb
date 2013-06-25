@@ -11,9 +11,14 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
-
-
-      <%= f.submit "Create User", class: "btn btn-large btn-primary" %>
+    <%= f.label :teams%>
+    <div class="boxes">
+    <% for team in @teams %>
+      <%= check_box_tag team, team, false, :teams=> team.name%>
+      <%=  team.name -%>
+    <% end %>
+    </div>
+<%= submit_tag "Create User", class: "btn btn-large btn-primary team" %>
     <% end %>
   </div>
 </div>
@@ -24,7 +29,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th></th>
+    <th>Teams</th>
     <th></th>
     <th></th>
   </tr>
@@ -33,6 +38,11 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= user.email %></td>
+    <td>
+    <%= @user.teams do |name|%>
+    <%= name.name%>
+    <%end%>
+    </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

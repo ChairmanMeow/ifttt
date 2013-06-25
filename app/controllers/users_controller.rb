@@ -6,13 +6,11 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.new
-    @team = Team.new
+    @teams = Team.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
-
-
   end
 
  def new
@@ -21,8 +19,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    @teams = Team.all
     @users = User.all
     @user = User.new(params[:user])
+    @user.attributes = {'teams' => []}.merge(params[:user] || {})
     if @user.save
       flash.keep[:success] =  @user.name + " Added to list of Users!"
       redirect_to users_path

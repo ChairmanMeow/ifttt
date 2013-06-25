@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name
+  attr_accessible :email, :name, :teams
   has_many :teams
+
+accepts_nested_attributes_for :teams
 
   before_save { |user| user.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
